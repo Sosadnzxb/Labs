@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main()
+
+{
+	float n = 0;
+	float a;
+	float sum = 0;
+	printf("Input number a\n");
+	scanf_s("%g", &a);
+	do
+	{
+		n++;
+		sum = sum + 1 / n;
+	} while (sum < a);
+	printf("Value is %g\n", n);
+	printf("sum=%g", sum);
+	return 0;
+}
