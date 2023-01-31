@@ -1,0 +1,145 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	srand(time(NULL));
+	int array1[100];
+	int array2[100];
+	int array3[100];
+	int ind_max, ind_min, size1, size2, max, min, choice;
+	printf("Select array size:\n1)Size - Random\n2)Size - Your\n");
+	while (scanf_s("%d", &choice) != 1 || choice < 0 || choice > 2 || getchar() != '\n')
+	{
+		printf("Select array elements:\n1)Elements - Random\n2)Elements - Your\n");
+		rewind(stdin);
+	}
+	printf("Enter the number of elements of the 1st array:");
+	while (scanf_s("%d", &size1) != 1 || size1 < 0 || getchar() != '\n')
+	{
+		printf("Enter the number of array elements:");
+		rewind(stdin);
+	}
+
+	printf("Enter the number of elements of the 2st array:");
+	while (scanf_s("%d", &size2) != 1 || size2 < 0 || getchar() != '\n')
+	{
+		printf("Enter the number of array elements:");
+		rewind(stdin);
+	}
+	switch (choice)
+	{
+
+	case 1:
+		for (int i = 0; i < size1; i++)
+		{
+			array1[i] = rand() % 201 - 100;
+		}
+
+		for (int i = 0; i < size2; i++)
+		{
+			array2[i] = rand() % 201 - 100;
+		}
+		break;
+
+
+	case 2:
+		for (int i = 0; i < size1; i++)
+		{
+			scanf_s("%d ", &array1[i]);
+		}
+		for (int i = 0; i < size2; i++)
+		{
+			scanf_s("%d ", &array2[i]);
+		}
+		break;
+	}
+
+	printf("Array1 = ");
+	for (int i = 0; i < size1; i++)
+	{
+		printf("%d ", array1[i]);
+	}
+	printf("\n");
+
+	printf("Array2 = ");
+	for (int i = 0; i < size2; i++)
+	{
+		printf("%d ", array2[i]);
+	}
+	printf("\n");
+
+	for (int i = 0; i < size1 - 1; i++)
+	{
+		for (int j = 0; j < size1 - i - 1; j++)
+		{
+			if (array1[j] < array1[j + 1])
+			{
+				int tmp = array1[j];
+				array1[j] = array1[j + 1];
+				array1[j + 1] = tmp;
+			}
+		}
+	}
+	for (int i = 0; i < size2 - 1; i++)
+	{
+		for (int j = 0; j < size2 - i - 1; j++)
+		{
+			if (array2[j] < array2[j + 1])
+			{
+				int tmp = array2[j];
+				array2[j] = array2[j + 1];
+				array2[j + 1] = tmp;
+			}
+		}
+	}
+
+	printf("Array1 in descending order  ");
+	for (int i = 0; i < size1; i++)
+	{
+		printf("%d ", array1[i]);
+	}
+	printf("\n");
+
+	printf("Array2 in descending order  ");
+	for (int i = 0; i < size2; i++)
+	{
+		printf("%d ", array2[i]);
+	}
+	printf("\n");
+
+	int k = 0;
+	int j = 0;
+	int size = size1 + size2;
+	for (int i = 0; i < size; i++)
+	{
+		if (j >= size)
+		{
+			array3[i] = array2[k];
+			k++;
+		}
+		else if (k >= size)
+		{
+			array3[i] = array1[j];
+			j++;
+		}
+		else if (array1[j] > array2[k])
+		{
+			array3[i] = array1[j];
+			j++;
+		}
+		else
+		{
+			array3[i] = array2[k];
+			k++;
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d ", array3[i]);
+	}
+
+	return 0;
+}
