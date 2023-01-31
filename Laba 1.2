@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main()
+{
+	int a, b, c;
+	printf("Input number for a,b\n");
+	printf("a=");
+	scanf_s("%d", &a);
+	printf("b=");
+	scanf_s("%d", &b);
+	printf("c=");
+	scanf_s("%d", &c);
+	if (a == -b)
+		printf("Opposite numbers");
+	else if (a == -c)
+		printf("Opposite numbers");
+	else if (b == -c)
+		printf("Opposite numbers");
+	else
+		printf("Not opposite numbers");
+	return 0;
+
+}
