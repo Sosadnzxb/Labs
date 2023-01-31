@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	srand(time(NULL));                                                                                            //time() - Данная функция, если ей в качестве аргумента передать NULL
+	int array[100][100];                                                                                          //возвращает количество секунд, прошедших c 1 января 1970 года
+	int choice, rows, cols;
+	printf("Select array size:\n1)Size - Random\n2)Size - Your\n");
+	while (scanf_s("%d", &choice) != 1 || choice < 0 || choice > 2 || getchar() != '\n')
+	{
+		printf("Select array size:\n1)Size - Random\n2)Size - Your\n");
+		rewind(stdin);                                                                                              //Функция перемещает индикатор положения файла в начало указанного потока
+	}                                                                                                               //одновременно снимая флаги ошибки, связанные с этим потоком.
+	printf("Enter the number of rows: ");
+	while (scanf_s("%d", &rows) != 1 || rows < 0 || getchar() != '\n')
+	{
+		printf("Enter the number of rows:");
+		rewind(stdin);
+	}
+
+	printf("Enter the number of cols:");
+	while (scanf_s("%d", &cols) != 1 || cols < 0 || getchar() != '\n')
+	{
+		printf("Enter the number of cols:");
+		rewind(stdin);
+	}
+	switch (choice)
+	{
+
+	case 1:
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				array[i][j] = rand() % 201 - 100;
+			}
+		}
+		break;
+
+
+	case 2:
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				while (scanf_s("%d", &array[i][j]) != 1 || getchar() != '\n')
+				{
+					rewind(stdin);
+				}
+			}
+			printf("\n");
+		}
+		break;
+	}
+
+	printf("Array = \n");
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			printf("[%d] ", array[i][j]);
+		}
+		printf("\n");
+	}
+
+	int number = 0;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (array[i][j] == 0)
+			{
+				number++;
+				break;
+			}
+		}
+	}
+	printf("The number of rows with zero = %d ", number);
+	int count = 0;
+	int highcount = 0;
+	int index = 0;
+	for (int j = 0; j < cols; j++)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			if(i != rows-1 && array[i][j]==array[i+1][j])
+			{
+				count++;
+				if(count>highcount)
+				{
+					highcount = count;
+					index = j;
+				}
+			}
+			if (i != rows - 1 && array[i][j] != array[i + 1][j])
+			{
+				count = 0;
+			}
+		}
+	}
+	printf("\nColumn number of a series of identical elements = %d", index);
+	return 0;
+}
