@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+
+{
+	int arr[100];
+	int i, size, choice, min, max;
+	int count = 0;
+	int sum = 0;
+	printf("Select array size:\n1)Size - Random\n2)Size - Your\n");
+	while (scanf_s("%d", &choice) != 1 || choice < 0 || choice > 2 || getchar() != '\n')
+	{
+		printf("Select array elements:\n1)Elements - Random\n2)Elements - Your\n");
+		rewind(stdin);
+	}
+
+	switch (choice)
+	{
+	case 1:
+		printf("Enter the number of array elements:");
+		while (scanf_s("%d", &size) != 1 || size < 0 || getchar() != '\n')
+		{
+			printf("Enter the number of array elements:");
+			rewind(stdin);
+		}
+		for (i = 0; i < size; i++)
+		{
+			arr[i] = rand(56) % 100-50;
+			printf("%d ", arr[i]);
+		}
+		for (i = 0; i < size; i++)
+		{
+			if (i % 2 == 0)
+			{
+				count += arr[i];
+			}
+			
+		}
+		min = 0;
+		max = 0;
+		for (i = 0; i < size; i++)
+		{
+			if (arr[i] < 0)
+			{
+				min = i;
+				break;
+			}
+
+		}
+		for (i = size - 1; i >= 0; i--)
+		{
+			if (arr[i] < 0)
+			{
+				max = i;
+				break;
+			}
+		}
+		printf("\nMin negative num = %d \n", arr[min]);
+		printf("Max negative num = %d \n", arr[max]);
+		if (min < max)
+			for (i = min + 1; i < max; i++)
+				sum += arr[i];
+		else
+			for (i = max - 1; i < min; i++)
+				sum += arr[i];
+		printf("\nThe sum of negative numbers = %d", sum);
+		printf("\nThe sum of the elements of the array with odd numbers = %d", count);
+		break;
+	case 2:
+		do
+		{
+			printf("Enter the number of array elements:");
+			while (scanf_s("%d", &size) != 1 || size < 0 || getchar() != '\n')
+			{
+				printf("Enter the number of array elements:");
+				rewind(stdin);
+			}
+		} while (size < 1 && size > 100);
+		for (i = 0; i < size; i++)
+		{
+			printf("a[%d]=", i);
+			scanf_s("%d", &arr[i]);
+		}
+		for (i = 0; i < size; i++)
+		{
+			if (i % 2 == 0)
+			{
+				count += arr[i];
+			}
+			printf("%d ", arr[i]);
+		}
+		min = 0;
+		max = 0;
+		for (i = 0; i < size; i++)
+		{
+			if (arr[i] < 0)
+			{
+				min = i;
+				break;
+			}
+
+		}
+		for (i = size - 1; i >= 0; i--)
+		{
+			if (arr[i] < 0)
+			{
+				max = i;
+				break;
+			}
+		}
+		printf("\nMin negative num = %d \n", arr[min]);
+		printf("Max negative num = %d \n", arr[max]);
+		if (min < max)
+			for (i = min + 1; i < max; i++)
+				sum += arr[i];
+		else
+			for (i = max - 1; i < min; i++)
+				sum += arr[i];
+		printf("\nThe sum of negative numbers = %d", sum);
+		printf("\nThe sum of the elements of the array with odd numbers = %d", count);
+		break;
+	}
+	return 0;
+}
