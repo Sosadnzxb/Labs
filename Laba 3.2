@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	srand(time(NULL));
+    int array[100];
+	int ind_max, ind_min, size, max, min, choice;
+	printf("Select array size:\n1)Size - Random\n2)Size - Your\n");
+	while (scanf_s("%d", &choice) != 1 || choice < 0 || choice > 2 || getchar() != '\n')
+	{
+		printf("Select array elements:\n1)Elements - Random\n2)Elements - Your\n");
+		rewind(stdin);
+	}
+		printf("Enter the number of array elements:");
+		while (scanf_s("%d", &size) != 1 || size < 0 || getchar() != '\n')
+		{
+			printf("Enter the number of array elements:");
+			rewind(stdin);
+		}
+		switch (choice)
+		{
+
+		case 1:
+			for (int i = 0; i < size; i++)
+			{
+				array[i] = rand() % 201 - 100;
+			}
+			break;
+
+
+		case 2:
+			for (int i = 0; i < size; i++)
+			{
+				scanf_s("%d ", &array[i]);
+			}
+			break;
+		}
+
+		for (int i = 0; i < size ; i++)
+		{
+			printf("%d ", array[i]);
+		}
+	min = array[0];
+	max = array[0];
+	ind_max = 0;
+	ind_min = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (max < array[i])
+		{
+			max = array[i];
+			ind_max = i;
+		}
+		if (min > array[i])
+		{
+			min = array[i];
+			ind_min = i;
+		}
+	
+	}
+	printf("\nMax =  %d ", max);
+	printf("\nMin = %d\n ", min);
+	if (ind_max > ind_min)
+	{
+		for (int i = 0; i < ind_max - ind_min - 1; i++)
+		{
+			for (int j = ind_min + 1; j < size; j++)
+			{
+				array[j] = array[j + 1];
+			}
+		}
+		for (int i = 0; i < size - (ind_max - ind_min - 1); i++)
+		{
+			printf("%d ", array[i]);
+		}
+	}
+	if (ind_min > ind_max)
+	{
+		for (int i = 0; i < ind_min - ind_max - 1; i++)
+		{
+			for (int j = ind_max + 1; j < size; j++)
+			{
+				array[j] = array[j + 1];
+			}
+		}
+		for (int i = 0; i < size - (ind_min - ind_max - 1); i++)
+		{
+			printf("%d ", array[i]);
+		}
+	}
+	return 0;
+}
