@@ -3,14 +3,14 @@
 #include "Header.h"
 
 int main() {
-    int maxSize;
-    printf("Enter the maximum queue size: ");
-    while (scanf("%d", &maxSize) != 1 || maxSize <= 0) {
-        printf("Invalid input. Please enter an integer: ");
+    int maxSize;                                                          //Структура данных
+    printf("Enter the maximum queue size: ");                             //FIFO - First-In-First-Out
+    while (scanf("%d", &maxSize) != 1 || maxSize <= 0) {                  //т.е первый элемент, который был добавлен в очередь, будет первым элементом
+        printf("Invalid input. Please enter an integer: ");               //который будет удален из очереди.
         while (getchar() != '\n'); // Очищаем буфер ввода
     }
 
-    Queue queue = createQueue(maxSize);                    //FIFO - First-In-First-Out
+    Queue queue = createQueue(maxSize);
 
     printf("Enter symbols:\n");
     char input;
