@@ -17,7 +17,7 @@ int main() {                                            //Структура д�
     int num;
     printf("Enter the stack elements:\n");
     for (int i = 0; i < maxSize; i++) {
-        printf("Element : ", i + 1);
+        printf("Element: ", i + 1);
         while (scanf("%d", &num) != 1) {
             printf("\nInvalid input. Please enter an integer: ");
             while (getchar() != '\n'); // Очищаем буфер ввода
