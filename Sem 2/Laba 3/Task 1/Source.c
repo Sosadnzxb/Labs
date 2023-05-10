@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 struct bits {
-    unsigned int num : 4; // 4-битное число
+    unsigned int num : 4;      // 4-битное число
     unsigned int top_bits : 2; // 2 старших бита числа
 };
 
@@ -15,8 +15,11 @@ struct bits {
 int main() {
     struct bits b = { 0 };                                    // Инициализируем все поля структуры нулями
     unsigned int tmp;
-    printf("Enter an unsigned int number: ");
-    scanf("%u", &tmp);                                        // Ввод числа с клавиатуры
+    printf("Enter an unsigned int number(0-15): ");
+    while (scanf("%d", &tmp) != 1 || tmp < 0 || tmp > 15) {
+        printf("Invalid input. Please enter an integer from 0 to 15: ");
+        while (getchar() != '\n');
+    }
     b.num = tmp;                                              // Сохраняем значение в поле b.num
     b.top_bits = (b.num >> 2) & 0x03;                         // Получение двух старших бит              
     printf("The two highest bits of the number %u: %u\n", b.num, b.top_bits);   
