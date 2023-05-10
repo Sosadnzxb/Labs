@@ -10,7 +10,7 @@ int main() {
         while (getchar() != '\n'); // Очищаем буфер ввода
     }
 
-    Queue queue = createQueue(maxSize);
+    Queue queue = createQueue(maxSize);                    //FIFO - First-In-First-Out
 
     printf("Enter symbols:\n");
     char input;
