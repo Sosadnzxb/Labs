@@ -22,13 +22,13 @@ void push(Stack* stack, int element) {
     stack->data[++stack->top] = element;
 }
 
-int pop(Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Error: Stack is empty\n");
-        return -1;
-    }
-    return stack->data[stack->top--];
-}
+//int pop(Stack* stack) {
+//    if (isEmpty(stack)) {
+//        printf("Error: Stack is empty\n");
+//        return -1;
+//    }
+//    return stack->data[stack->top--];
+//}
 
 int getSumOfEvenElements(Stack* stack) {
     int sum = 0;
